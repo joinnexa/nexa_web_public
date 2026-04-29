@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import { GlassCard } from "./glass-card";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import nexaPayLogo from "../../assets/nexa-pay.png";
 import nexaGoLogo from "../../assets/nexa-go.png";
 import nexaStaysLogo from "../../assets/nexa-stays.png";
@@ -24,6 +27,7 @@ interface ServiceDetail {
 
 export function DetailedServicesSection({ isDark = false }: DetailedServicesSectionProps) {
   const { t } = useI18n();
+  const m = useScrollReveal();
   const services: ServiceDetail[] = [
     {
       title: "Nexa Pay",
@@ -103,44 +107,42 @@ export function DetailedServicesSection({ isDark = false }: DetailedServicesSect
   ];
 
   return (
-    <section id="detailed-services" className="px-12 py-24">
+    <section id="detailed-services" className="px-4 sm:px-6 lg:px-12 py-10 sm:py-14 md:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          {...m.fadeUp}
+          className="text-center mb-10 sm:mb-14"
         >
-          <h2 className={`text-5xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
+          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>
             {t("detailedServices.title")}
           </h2>
         </motion.div>
 
-        <div className="space-y-8">
+        <div className="space-y-5 sm:space-y-8">
           {services.map((service, index) => {
             const reverse = index % 2 === 1;
             return (
               <GlassCard key={service.title} isDark={isDark} delay={index * 0.05}>
-                <div className={`grid lg:grid-cols-2 gap-8 items-center ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
+                <div className={`grid lg:grid-cols-2 gap-4 sm:gap-8 items-center ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
                   <div
-                    className={`rounded-2xl p-8 flex items-center justify-center min-h-[260px] ${
+                    className={`rounded-2xl p-4 sm:p-8 flex items-center justify-center min-h-[150px] sm:min-h-[260px] ${
                       isDark ? "bg-white/5 border border-white/10" : "bg-white border border-gray-200"
                     }`}
                   >
-                    <img src={service.logo} alt={`${service.title} logo`} className="h-36 w-36 object-contain" />
+                    <img src={service.logo} alt={`${service.title} logo`} className="h-24 w-24 sm:h-32 sm:w-32 md:h-36 md:w-36 object-contain" />
                   </div>
 
-                  <div className="space-y-5">
+                  <div className="space-y-4 sm:space-y-5">
                     <div>
                       <p className={`text-sm font-semibold tracking-wide uppercase ${isDark ? "text-[#72AFF8]" : "text-[#2F73E8]"}`}>
                         {service.title}
                       </p>
-                      <h3 className={`text-3xl font-bold mt-1 ${isDark ? "text-white" : "text-gray-900"}`}>
+                      <h3 className={`text-2xl sm:text-3xl font-bold mt-1 ${isDark ? "text-white" : "text-gray-900"}`}>
                         {service.headline}
                       </h3>
                     </div>
 
-                    <p className={`text-lg leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}>
+                    <p className={`text-base sm:text-lg leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"}`}>
                       {service.copy}
                     </p>
 

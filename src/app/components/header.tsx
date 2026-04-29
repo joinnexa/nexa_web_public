@@ -246,7 +246,7 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
         </motion.div>
       </nav>
 
-      <div className="md:hidden h-14" />
+      <div className="md:hidden h-[104px]" />
       <nav
         className={`md:hidden fixed top-0 left-0 right-0 z-50 h-14 px-4 border-b backdrop-blur-md flex items-center justify-between ${
           isDark ? "bg-[#081122]/80 border-white/10 text-white" : "bg-white/80 border-gray-200 text-gray-900"
@@ -309,6 +309,31 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
           {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
         </button>
       </nav>
+      <div
+        className={`md:hidden fixed top-14 left-0 right-0 z-40 h-[50px] px-2 border-b backdrop-blur-md flex items-center gap-2 overflow-x-auto ${
+          isDark ? "bg-[#081122]/80 border-white/10 text-white" : "bg-white/85 border-gray-200 text-gray-900"
+        }`}
+      >
+        {navItems.map(({ label, target, offset }) => (
+          <button
+            key={`mobile-${target}`}
+            onClick={() => handleScroll(target, offset)}
+            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border ${
+              isDark ? "border-white/15 text-gray-200" : "border-gray-200 text-gray-700"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+        <button
+          onClick={handleJoinWaitlist}
+          className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold ${
+            isDark ? "bg-gradient-to-r from-[#72AFF8] to-[#4D8EF6] text-white" : "bg-[#0f172a] text-white"
+          }`}
+        >
+          {t("nav.joinWaitlist")}
+        </button>
+      </div>
     </>
   );
 }

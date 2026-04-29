@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { motion } from "motion/react";
 import { GlassCard } from "./glass-card";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import nexaPayLogo from "../../assets/nexa-pay.png";
 import nexaGoLogo from "../../assets/nexa-go.png";
 import nexaStaysLogo from "../../assets/nexa-stays.png";
@@ -15,6 +18,7 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ isDark = false }: ServicesSectionProps) {
   const { t } = useI18n();
+  const m = useScrollReveal();
   interface ServiceItem {
     emoji?: string;
     logo?: string;
@@ -75,16 +79,14 @@ export function ServicesSection({ isDark = false }: ServicesSectionProps) {
   ];
 
   return (
-    <section id="services" className="px-12 py-24">
+    <section id="services" className="px-4 sm:px-6 lg:px-12 py-10 sm:py-14 md:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
+          {...m.fadeUp}
+          className="text-center mb-10 sm:mb-14 lg:mb-16"
         >
           <h2
-            className={`text-5xl font-bold ${
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
           >
@@ -92,23 +94,23 @@ export function ServicesSection({ isDark = false }: ServicesSectionProps) {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {services.map((service, index) => (
             <GlassCard key={service.title} isDark={isDark} delay={index * 0.1}>
-              <div className="space-y-4">
-                <div className="h-32 flex items-center overflow-visible">
+              <div className="space-y-2.5 sm:space-y-4">
+                <div className="h-20 sm:h-28 md:h-32 flex items-center overflow-visible">
                   {service.logo ? (
                     <img
                       src={service.logo}
                       alt={`${service.title} logo`}
-                      className={`${service.logoClassName ?? "h-20 w-20"} ${service.logoScaleClassName ?? ""} object-contain origin-center`}
+                      className={`${service.logoClassName ?? "h-16 w-16 sm:h-20 sm:w-20"} ${service.logoScaleClassName ?? ""} object-contain origin-center`}
                     />
                   ) : (
                     <div className="text-5xl">{service.emoji}</div>
                   )}
                 </div>
                 <h3
-                  className={`text-2xl font-semibold ${
+                  className={`text-xl sm:text-2xl font-semibold ${
                     isDark ? 'text-white' : 'text-gray-900'
                   }`}
                 >

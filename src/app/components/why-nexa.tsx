@@ -1,5 +1,8 @@
+"use client";
+
 import { motion } from "motion/react";
 import { GlassCard } from "./glass-card";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { useI18n } from "../i18n";
 
 interface WhyNexaProps {
@@ -8,6 +11,7 @@ interface WhyNexaProps {
 
 export function WhyNexa({ isDark = false }: WhyNexaProps) {
   const { t } = useI18n();
+  const m = useScrollReveal();
   const benefits = [
     {
       title: t("why.b1t"),
@@ -36,16 +40,14 @@ export function WhyNexa({ isDark = false }: WhyNexaProps) {
   ];
 
   return (
-    <section className="px-12 py-24">
+    <section className="px-4 sm:px-6 lg:px-12 py-10 sm:py-14 md:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
+          {...m.fadeUp}
+          className="text-center mb-10 sm:mb-14 lg:mb-16"
         >
           <h2
-            className={`text-5xl font-bold ${
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
           >
@@ -53,7 +55,7 @@ export function WhyNexa({ isDark = false }: WhyNexaProps) {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {benefits.map((benefit, index) => (
             <GlassCard key={benefit.title} isDark={isDark} delay={index * 0.08}>
               <div className="space-y-3">

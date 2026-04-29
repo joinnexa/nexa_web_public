@@ -1,4 +1,7 @@
+"use client";
+
 import { motion } from "motion/react";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { GlassCard } from "./glass-card";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "../i18n";
@@ -9,6 +12,7 @@ interface NewsSectionProps {
 
 export function NewsSection({ isDark = false }: NewsSectionProps) {
   const { t } = useI18n();
+  const m = useScrollReveal();
   const updates = [
     t("news.i1"),
     t("news.i2"),
@@ -16,16 +20,14 @@ export function NewsSection({ isDark = false }: NewsSectionProps) {
   ];
 
   return (
-    <section id="blog" className="px-12 py-24">
+    <section id="blog" className="px-4 sm:px-6 lg:px-12 py-10 sm:py-14 md:py-20 lg:py-24">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          {...m.fadeUp}
+          className="text-center mb-8 sm:mb-14"
         >
           <h2
-            className={`text-5xl font-bold ${
+            className={`text-3xl sm:text-4xl lg:text-5xl font-bold ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
           >
@@ -38,7 +40,7 @@ export function NewsSection({ isDark = false }: NewsSectionProps) {
             <GlassCard key={update} isDark={isDark} delay={index * 0.1}>
               <div className="flex items-center justify-between">
                 <span
-                  className={`text-lg ${
+                  className={`text-base sm:text-lg ${
                     isDark ? 'text-gray-200' : 'text-gray-700'
                   }`}
                 >
