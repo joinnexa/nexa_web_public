@@ -9,6 +9,7 @@ import {
 import { Lightbulb, BookOpen, Shield, Phone, Search, Sun, Moon } from "lucide-react";
 import { NexaLogo } from "./nexa-logo";
 import { useI18n } from "../i18n";
+import { cn } from "./ui/utils";
 
 interface HeaderProps {
   isDark?: boolean;
@@ -246,93 +247,137 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
         </motion.div>
       </nav>
 
-      <div className="md:hidden h-[104px]" />
-      <nav
-        className={`md:hidden fixed top-0 left-0 right-0 z-50 h-14 px-4 border-b backdrop-blur-md flex items-center justify-between ${
-          isDark ? "bg-[#081122]/80 border-white/10 text-white" : "bg-white/80 border-gray-200 text-gray-900"
-        }`}
-      >
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          <NexaLogo isDark={isDark} showText={false} />
-        </button>
-        <div className="relative" ref={mobileLocaleRef}>
-          <button
-            onClick={() => setIsLocaleOpen((prev) => !prev)}
-            className={`
-              px-2 py-1.5 rounded-md text-xs font-medium border transition-all min-w-12
-              ${isDark ? "border-white/20 text-white" : "border-gray-300 text-gray-700"}
-            `}
-            aria-label="Change language"
-            aria-haspopup="listbox"
-            aria-expanded={isLocaleOpen}
+      <div className="md:hidden h-[114px]" aria-hidden />
+      {/* Mobile: floating glass stack (aligned with Nexa Go / Nexa Pay) */}
+      <div className="md:hidden fixed inset-x-0 top-0 z-50 bg-transparent px-3 pt-2 pb-2">
+        <div className="mx-auto flex w-full max-w-full flex-col">
+          <div
+            className={cn(
+              "relative z-20 grid h-[52px] shrink-0 grid-cols-3 items-center gap-1 px-3",
+              "rounded-t-[18px] border border-b-0",
+              "backdrop-blur-[14px] backdrop-saturate-150",
+              "shadow-[0_20px_60px_rgba(20,31,52,0.08)] dark:shadow-[0_20px_70px_rgba(0,0,0,0.34)]",
+              isDark
+                ? "border-white/10 bg-[rgba(17,26,42,0.78)] text-white"
+                : "border-gray-200/80 bg-white/[0.86] text-gray-900",
+            )}
           >
-            {locale.toUpperCase()}
-          </button>
-          {isLocaleOpen && (
-            <div
-              className={`absolute right-0 top-full mt-2 rounded-xl border shadow-lg p-1.5 z-50 min-w-20 ${
-                isDark ? "border-white/15 bg-[#0b1a35]" : "border-gray-200 bg-white"
-              }`}
-              role="listbox"
-              aria-label="Select language"
-            >
-              {(["en", "fr", "ar"] as Locale[]).map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => {
-                    setLocale(item);
-                    setIsLocaleOpen(false);
-                  }}
-                  className={`w-full h-8 rounded-lg text-xs font-semibold ${
-                    item === locale
-                      ? "bg-blue-600 text-white"
-                      : isDark
-                        ? "text-gray-100 hover:bg-white/10"
-                        : "text-gray-800 hover:bg-gray-100"
-                  }`}
-                >
-                  {item.toUpperCase()}
-                </button>
-              ))}
+            <div className="flex min-w-0 justify-start">
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="flex items-center hover:opacity-85 transition-opacity"
+              >
+                <NexaLogo isDark={isDark} showText={false} />
+              </button>
             </div>
-          )}
-        </div>
-        <button
-          onClick={onToggleTheme}
-          aria-label="Toggle color theme"
-          className={`
-            px-3 py-1.5 rounded-md text-xs font-medium border transition-all
-            ${isDark ? "border-white/20 text-white" : "border-gray-300 text-gray-700"}
-          `}
-        >
-          {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
-        </button>
-      </nav>
-      <div
-        className={`md:hidden fixed top-14 left-0 right-0 z-40 h-[50px] px-2 border-b backdrop-blur-md flex items-center gap-2 overflow-x-auto ${
-          isDark ? "bg-[#081122]/80 border-white/10 text-white" : "bg-white/85 border-gray-200 text-gray-900"
-        }`}
-      >
-        {navItems.map(({ label, target, offset }) => (
-          <button
-            key={`mobile-${target}`}
-            onClick={() => handleScroll(target, offset)}
-            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border ${
-              isDark ? "border-white/15 text-gray-200" : "border-gray-200 text-gray-700"
-            }`}
+
+            <div className="relative z-30 flex justify-center" ref={mobileLocaleRef}>
+              <button
+                type="button"
+                onClick={() => setIsLocaleOpen((prev) => !prev)}
+                className={cn(
+                  "inline-flex min-h-[38px] min-w-[4.75rem] items-center justify-center rounded-full border px-3 text-xs font-extrabold tracking-wider transition-colors",
+                  isDark
+                    ? "border-white/18 bg-white/[0.06] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                    : "border-gray-300/90 bg-gradient-to-b from-white to-gray-50 text-gray-900 shadow-sm",
+                )}
+                aria-label="Change language"
+                aria-haspopup="listbox"
+                aria-expanded={isLocaleOpen}
+              >
+                {locale.toUpperCase()}
+              </button>
+              {isLocaleOpen && (
+                <div
+                  className={cn(
+                    "absolute left-1/2 top-full z-[100] mt-1.5 min-w-24 -translate-x-1/2 rounded-xl border p-1.5 shadow-xl backdrop-blur-xl",
+                    isDark ? "border-white/15 bg-[rgba(17,26,42,0.95)]" : "border-gray-200 bg-white/95",
+                  )}
+                  role="listbox"
+                  aria-label="Select language"
+                >
+                  {(["en", "fr", "ar"] as Locale[]).map((item) => (
+                    <button
+                      key={item}
+                      type="button"
+                      onClick={() => {
+                        setLocale(item);
+                        setIsLocaleOpen(false);
+                      }}
+                      className={cn(
+                        "w-full rounded-lg py-2 text-sm font-semibold",
+                        item === locale
+                          ? "bg-blue-600 text-white"
+                          : isDark
+                            ? "text-gray-100 hover:bg-white/10"
+                            : "text-gray-800 hover:bg-gray-100",
+                      )}
+                    >
+                      {item.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                aria-label="Toggle color theme"
+                className={cn(
+                  "inline-flex size-[38px] shrink-0 items-center justify-center rounded-full border transition-colors",
+                  isDark ? "border-white/18 text-white hover:bg-white/10" : "border-gray-300 text-gray-800 hover:bg-gray-100",
+                )}
+              >
+                {isDark ? <Sun className="size-[1.05rem]" /> : <Moon className="size-[1.05rem]" />}
+              </button>
+            </div>
+          </div>
+
+          <nav
+            aria-label="Mobile sections"
+            className={cn(
+              "relative z-10 flex h-[46px] items-center gap-2 overflow-x-auto px-2.5",
+              "rounded-b-[18px] border border-t",
+              "backdrop-blur-[14px] backdrop-saturate-150",
+              "shadow-[0_20px_60px_rgba(20,31,52,0.08)] dark:shadow-[0_20px_70px_rgba(0,0,0,0.34)]",
+              "[scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+              isDark
+                ? "border-white/10 border-t-white/16 bg-[rgba(17,26,42,0.78)]"
+                : "border-gray-200/80 border-t-gray-300/60 bg-white/[0.86]",
+            )}
           >
-            {label}
-          </button>
-        ))}
-        <button
-          onClick={handleJoinWaitlist}
-          className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold ${
-            isDark ? "bg-gradient-to-r from-[#72AFF8] to-[#4D8EF6] text-white" : "bg-[#0f172a] text-white"
-          }`}
-        >
-          {t("nav.joinWaitlist")}
-        </button>
+            {navItems.map(({ label, target, offset }) => (
+              <button
+                key={`mobile-${target}`}
+                type="button"
+                onClick={() => handleScroll(target, offset)}
+                className={cn(
+                  "shrink-0 rounded-full px-3.5 py-1.5 text-[0.72rem] font-extrabold transition-colors",
+                  isDark
+                    ? "text-[#c6d0df] hover:bg-amber-400/14 hover:text-white"
+                    : "text-[#526078] hover:bg-amber-400/18 hover:text-gray-900",
+                )}
+              >
+                {label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={handleJoinWaitlist}
+              className={cn(
+                "shrink-0 rounded-full px-3.5 py-1.5 text-[0.72rem] font-extrabold transition-opacity hover:opacity-95",
+                isDark
+                  ? "bg-gradient-to-r from-[#72AFF8] to-[#4D8EF6] text-white"
+                  : "bg-[#0f172a] text-white",
+              )}
+            >
+              {t("nav.joinWaitlist")}
+            </button>
+          </nav>
+        </div>
       </div>
     </>
   );
