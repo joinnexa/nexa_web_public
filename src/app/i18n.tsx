@@ -122,6 +122,18 @@ const translations: Record<Locale, Dictionary> = {
     "final.cta2": "Contact Support",
     "footer.rights": "Nexa © 2026. All rights reserved.",
     "footer.contact": "Contact",
+    "footer.subtitle": "One ecosystem for payments, mobility, stays, and daily life — built for Morocco.",
+    "footer.disclaimer":
+      "Nexa is in development. Features, availability, and product lines may change. Nothing on this page is financial, legal, tax, or investment advice. Services are offered by Nexa and partners subject to applicable terms and local regulations.",
+    "footer.quickLinks": "Quick links",
+    "footer.social": "Social",
+    "footer.secured": "Secured by Nexa. Operated by Nexa.",
+    "footer.rightsReserved": "All rights reserved.",
+    "footer.instagram.joinnexa": "@joinnexa",
+    "footer.instagram.nexago": "nexago.ma",
+    "footer.instagram.nexapay": "nexapay.ma",
+    "footer.instagram.nexastays": "nexastays.ma",
+    "footer.quickLink.careers": "Careers",
   },
   fr: {
     "nav.about": "A propos",
@@ -240,6 +252,19 @@ const translations: Record<Locale, Dictionary> = {
     "final.cta2": "Contacter le support",
     "footer.rights": "Nexa © 2026. Tous droits reserves.",
     "footer.contact": "Contact",
+    "footer.subtitle":
+      "Une ecosysteme pour les paiements, la mobilite, les sejours et le quotidien — concue pour le Maroc.",
+    "footer.disclaimer":
+      "Nexa est en developpement. Les fonctionnalites, disponibilites et offres peuvent evoluer. Rien sur cette page ne constitue un conseil financier, juridique, fiscal ou en investissement. Les services sont fournis par Nexa et ses partenaires selon les conditions et la reglementation applicables.",
+    "footer.quickLinks": "Liens rapides",
+    "footer.social": "Reseaux sociaux",
+    "footer.secured": "Securise par Nexa. Opere par Nexa.",
+    "footer.rightsReserved": "Tous droits reserves.",
+    "footer.instagram.joinnexa": "@joinnexa",
+    "footer.instagram.nexago": "nexago.ma",
+    "footer.instagram.nexapay": "nexapay.ma",
+    "footer.instagram.nexastays": "nexastays.ma",
+    "footer.quickLink.careers": "Carrieres",
   },
   ar: {
     "nav.about": "حول",
@@ -358,6 +383,18 @@ const translations: Record<Locale, Dictionary> = {
     "final.cta2": "تواصل مع الدعم",
     "footer.rights": "نِكسا © 2026. جميع الحقوق محفوظة.",
     "footer.contact": "تواصل",
+    "footer.subtitle": "منظومة واحدة للمدفوعات والتنقل والإقامة والحياة اليومية — من أجل المغرب.",
+    "footer.disclaimer":
+      "نِكسا قيد التطوير. قد تتغير الميزات والتوفر وخطوط المنتجات. لا يُعد أي محتوى هنا استشارة مالية أو قانونية أو ضريبية أو استثمارية. تُقدَّم الخدمات عبر نِكسا والشركاء وفق الشروط والأنظمة المعمول بها.",
+    "footer.quickLinks": "روابط سريعة",
+    "footer.social": "وسائل التواصل",
+    "footer.secured": "مؤمن بواسطة Nexa. يُدار بواسطة Nexa.",
+    "footer.rightsReserved": "جميع الحقوق محفوظة.",
+    "footer.instagram.joinnexa": "@joinnexa",
+    "footer.instagram.nexago": "nexago.ma",
+    "footer.instagram.nexapay": "nexapay.ma",
+    "footer.instagram.nexastays": "nexastays.ma",
+    "footer.quickLink.careers": "الوظائف",
   },
 };
 
