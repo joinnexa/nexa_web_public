@@ -91,7 +91,7 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
   useEffect(() => {
     const updateMaxWidth = () => {
       const shrinkValue = shrink.get();
-      const endValue = isSmallScreen ? 85 : 75;
+      const endValue = isSmallScreen ? 85 : 88;
       const currentPercent = 100 + (endValue - 100) * shrinkValue;
       maxWidth.set(`${currentPercent}%`);
     };
@@ -164,7 +164,7 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
                 <NexaLogo isDark={isDark} showText={false} />
               </button>
 
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
                 {navItems.map(({ label, target, offset }) => (
                   <button
                     key={target}
@@ -233,7 +233,7 @@ export function Header({ isDark = false, onToggleTheme }: HeaderProps) {
                 </button>
                 <button
                   onClick={handleJoinWaitlist}
-                  className={`font-semibold py-2 px-2 md:px-4 rounded-lg transition-all text-xs ${
+                  className={`font-semibold py-2 px-2 md:px-3 rounded-lg transition-all text-xs ${
                     isDark
                       ? "bg-gradient-to-r from-[#72AFF8] to-[#4D8EF6] text-white"
                       : "bg-[#0f172a] text-white"
