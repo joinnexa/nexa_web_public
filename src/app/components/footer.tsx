@@ -82,6 +82,18 @@ export function Footer({ isDark = false }: FooterProps) {
               <ul
                 className={`mt-3 space-y-2 ${isRtl ? "text-right" : "text-left"} list-none p-0 m-0`}
               >
+                <li>
+                  <a
+                    href="/about-nexa/"
+                    className={cn(
+                      "text-sm transition-colors hover:underline",
+                      muted,
+                      isDark ? "hover:text-white" : "hover:text-gray-900",
+                    )}
+                  >
+                    {t("footer.aboutNexa")}
+                  </a>
+                </li>
                 {QUICK_LINKS.map(({ labelKey, target, offset }) => (
                   <li key={`${target}-${labelKey}`}>
                     <button

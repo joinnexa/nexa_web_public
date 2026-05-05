@@ -147,6 +147,7 @@ const translations: Record<Locale, Dictionary> = {
     "footer.disclaimer":
       "Nexa is in development. Features, availability, and product lines may change. Nothing on this page is financial, legal, tax, or investment advice. Services are offered by Nexa and partners subject to applicable terms and local regulations.",
     "footer.quickLinks": "Quick links",
+    "footer.aboutNexa": "What is Nexa?",
     "footer.social": "Social",
     "footer.secured": "Secured by Nexa. Operated by Nexa.",
     "footer.rightsReserved": "All rights reserved.",
@@ -299,6 +300,7 @@ const translations: Record<Locale, Dictionary> = {
     "footer.disclaimer":
       "Nexa est en developpement. Les fonctionnalites, disponibilites et offres peuvent evoluer. Rien sur cette page ne constitue un conseil financier, juridique, fiscal ou en investissement. Les services sont fournis par Nexa et ses partenaires selon les conditions et la reglementation applicables.",
     "footer.quickLinks": "Liens rapides",
+    "footer.aboutNexa": "Qu’est-ce que Nexa ?",
     "footer.social": "Reseaux sociaux",
     "footer.secured": "Securise par Nexa. Opere par Nexa.",
     "footer.rightsReserved": "Tous droits reserves.",
@@ -450,6 +452,7 @@ const translations: Record<Locale, Dictionary> = {
     "footer.disclaimer":
       "نِكسا قيد التطوير. قد تتغير الميزات والتوفر وخطوط المنتجات. لا يُعد أي محتوى هنا استشارة مالية أو قانونية أو ضريبية أو استثمارية. تُقدَّم الخدمات عبر نِكسا والشركاء وفق الشروط والأنظمة المعمول بها.",
     "footer.quickLinks": "روابط سريعة",
+    "footer.aboutNexa": "ما هو Nexa؟",
     "footer.social": "وسائل التواصل",
     "footer.secured": "مؤمن بواسطة Nexa. يُدار بواسطة Nexa.",
     "footer.rightsReserved": "جميع الحقوق محفوظة.",
