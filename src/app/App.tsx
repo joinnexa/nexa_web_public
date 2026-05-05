@@ -25,20 +25,13 @@ export default function App() {
 }
 
 function PublicWebApp() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return false;
     const storedTheme = window.localStorage.getItem("nexa-public-theme");
-    if (storedTheme === "dark") {
-      setIsDark(true);
-      return;
-    }
-    if (storedTheme === "light") {
-      setIsDark(false);
-      return;
-    }
-    setIsDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
-  }, []);
+    if (storedTheme === "dark") return true;
+    if (storedTheme === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);

@@ -461,6 +461,21 @@ const translations: Record<Locale, Dictionary> = {
   },
 };
 
+function localeFromNavigatorLanguages(): Locale {
+  if (typeof navigator === "undefined") return "en";
+  const list =
+    typeof navigator.languages !== "undefined" && navigator.languages.length > 0
+      ? navigator.languages
+      : [navigator.language];
+  for (const tag of list) {
+    const base = String(tag).split("-")[0]?.toLowerCase();
+    if (base === "ar") return "ar";
+    if (base === "fr") return "fr";
+    if (base === "en") return "en";
+  }
+  return "en";
+}
+
 type I18nContextType = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
@@ -470,14 +485,12 @@ type I18nContextType = {
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("en");
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem("nexa-public-locale") as Locale | null;
-    if (stored && ["en", "fr", "ar"].includes(stored)) {
-      setLocale(stored);
-    }
-  }, []);
+  const [locale, setLocale] = useState<Locale>(() => {
+    if (typeof window === "undefined") return "en";
+    const stored = window.localStorage.getItem("nexa-public-locale");
+    if (stored && ["en", "fr", "ar"].includes(stored)) return stored as Locale;
+    return localeFromNavigatorLanguages();
+  });
 
   useEffect(() => {
     document.documentElement.lang = locale;
