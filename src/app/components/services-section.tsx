@@ -94,11 +94,16 @@ export function ServicesSection({ isDark = false }: ServicesSectionProps) {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 items-stretch">
           {services.map((service, index) => (
-            <GlassCard key={service.title} isDark={isDark} delay={index * 0.1}>
-              <div className="space-y-2.5 sm:space-y-4">
-                <div className="h-20 sm:h-28 md:h-32 flex items-center overflow-visible">
+            <GlassCard
+              key={service.title}
+              isDark={isDark}
+              delay={index * 0.1}
+              className="h-full flex flex-col"
+            >
+              <div className="flex min-h-0 flex-1 flex-col gap-2.5 sm:gap-4">
+                <div className="h-20 sm:h-28 md:h-32 flex items-center overflow-visible shrink-0">
                   {service.logo ? (
                     <img
                       src={service.logo}
@@ -110,52 +115,54 @@ export function ServicesSection({ isDark = false }: ServicesSectionProps) {
                   )}
                 </div>
                 <h3
-                  className={`text-xl sm:text-2xl font-semibold ${
+                  className={`text-xl sm:text-2xl font-semibold shrink-0 ${
                     isDark ? 'text-white' : 'text-gray-900'
                   }`}
                 >
                   {service.title}
                 </h3>
                 <p
-                  className={`leading-relaxed ${
+                  className={`leading-relaxed shrink-0 ${
                     isDark ? 'text-gray-300' : 'text-gray-600'
                   }`}
                 >
                   {service.description}
                 </p>
-                <p
-                  className={`font-semibold text-sm pt-2 ${
-                    isDark ? 'text-[#72AFF8]' : 'text-[#4D8EF6]'
-                  }`}
-                >
-                  {service.tagline}
-                </p>
-                <div className="pt-2">
-                  {service.website ? (
-                    <a
-                      href={service.website}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`
+                <div className="mt-auto flex flex-col gap-2 pt-2">
+                  <p
+                    className={`font-semibold text-sm ${
+                      isDark ? 'text-[#72AFF8]' : 'text-[#4D8EF6]'
+                    }`}
+                  >
+                    {service.tagline}
+                  </p>
+                  <div>
+                    {service.website ? (
+                      <a
+                        href={service.website}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`
                         inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold transition-all
                         ${isDark
                           ? "bg-white/10 text-white hover:bg-white/20 border border-white/20"
                           : "bg-gray-100 text-gray-900 hover:bg-gray-200 border border-gray-200"
                         }
                       `}
-                    >
-                      {t("services.visitWebsite")}
-                    </a>
-                  ) : (
-                    <span
-                      className={`
+                      >
+                        {t("services.visitWebsite")}
+                      </a>
+                    ) : (
+                      <span
+                        className={`
                         inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold
                         ${isDark ? "bg-white/5 text-gray-300 border border-white/10" : "bg-gray-50 text-gray-600 border border-gray-200"}
                       `}
-                    >
-                      {t("services.comingSoon")}
-                    </span>
-                  )}
+                      >
+                        {t("services.comingSoon")}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </GlassCard>
