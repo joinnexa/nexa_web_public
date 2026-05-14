@@ -103,8 +103,12 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...formData,
-          how_will_use_nexa: formData.usage_note || undefined,
+          full_name: formData.full_name,
+          phone_number: formData.phone_number,
+          email: formData.email,
+          city: formData.city,
+          user_type: formData.user_type || undefined,
+          how_will_use_nexa: formData.usage_note.trim() || undefined,
           source: "nexa_web_public",
         }),
       });
