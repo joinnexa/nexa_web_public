@@ -79,7 +79,7 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
     email: "",
     user_type: "",
     city: "",
-    usage_note: "",
+    how_will_use_nexa: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
@@ -103,12 +103,12 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full_name: formData.full_name,
-          phone_number: formData.phone_number,
-          email: formData.email,
-          city: formData.city,
+          full_name: formData.full_name.trim(),
+          phone_number: formData.phone_number.trim(),
+          email: formData.email.trim(),
+          city: formData.city.trim(),
           user_type: formData.user_type || undefined,
-          how_will_use_nexa: formData.usage_note.trim() || undefined,
+          how_will_use_nexa: formData.how_will_use_nexa.trim() || undefined,
           source: "nexa_web_public",
         }),
       });
@@ -132,7 +132,7 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
         email: "",
         user_type: "",
         city: "",
-        usage_note: "",
+        how_will_use_nexa: "",
       });
     } catch (error) {
       setSubmitStatus({
@@ -222,8 +222,8 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
                 autoComplete="tel"
                 className={`mt-2 h-14 w-full rounded-2xl border px-4 text-base text-white placeholder:text-[#94A3B8] outline-none transition-all ${isRtl ? "text-right placeholder:text-right" : ""} ${
                   isDark
-                    ? "border-white/15 bg-[rgba(7,11,20,0.8)] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
-                    : "border-gray-300 bg-[rgba(17,24,39,0.9)] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
+                    ? "border-white/15 bg-[#07111f] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
+                    : "border-[#1e293b] bg-[#07111f] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
                 }`}
               />
             </label>
@@ -240,8 +240,8 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
                 autoComplete="email"
                 className={`mt-2 h-14 w-full rounded-2xl border px-4 text-base text-white placeholder:text-[#94A3B8] outline-none transition-all ${isRtl ? "text-right placeholder:text-right" : ""} ${
                   isDark
-                    ? "border-white/15 bg-[rgba(7,11,20,0.8)] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
-                    : "border-gray-300 bg-[rgba(17,24,39,0.9)] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
+                    ? "border-white/15 bg-[#07111f] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
+                    : "border-[#1e293b] bg-[#07111f] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
                 }`}
               />
             </label>
@@ -284,14 +284,16 @@ export function FinalCTA({ isDark = false }: FinalCTAProps) {
             <label className={`text-sm font-semibold text-[#e8f0ff] sm:text-base ${isRtl ? "text-right" : "text-left"}`}>
               {t("final.form.usage")}
               <textarea
-                name="usage_note"
-                value={formData.usage_note}
+                name="how_will_use_nexa"
+                value={formData.how_will_use_nexa}
                 onChange={handleInputChange}
                 placeholder={t("final.form.usagePlaceholder")}
+                rows={4}
+                autoComplete="off"
                 className={`mt-2 min-h-[118px] w-full rounded-2xl border px-4 py-3 text-base text-white placeholder:text-[#94A3B8] outline-none transition-all ${isRtl ? "text-right placeholder:text-right" : ""} ${
                   isDark
-                    ? "border-white/15 bg-[rgba(7,11,20,0.8)] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
-                    : "border-gray-300 bg-[rgba(17,24,39,0.9)] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
+                    ? "border-white/15 bg-[#07111f] focus:border-[#72AFF8] focus:shadow-[0_0_0_3px_rgba(114,175,248,0.25)]"
+                    : "border-[#1e293b] bg-[#07111f] focus:border-[#4D8EF6] focus:shadow-[0_0_0_3px_rgba(77,142,246,0.25)]"
                 }`}
               />
             </label>
